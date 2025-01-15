@@ -2,12 +2,18 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Visit = require('./visitor.model');
 const dotenv = require('dotenv');
-
+const cors = require('cors');
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 7589;
 
 app.use(express.json());
+app.use(express.urlencoded({
+    extended: true,
+   
+}))
+app.use(cors());
+
 
 mongoose
     .connect(process.env.MONGODB_URI)
